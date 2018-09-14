@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import static junit.framework.TestCase.assertEquals;
 @RunWith(Parameterized.class)
-public class ParameterizedCountWaysTest {
+public class ParameterizedUnitTestCountWays {
 
 
     @Parameterized.Parameter(0)
@@ -17,8 +17,8 @@ public class ParameterizedCountWaysTest {
     public static Iterable<Object[]> data() {
 
 // testing with input values 0,1,2,3,4,5,-3
-        return Arrays.asList(new Object[][]{{0, 0}, {1, 1}, {2, 2},
-                {3, 3}, {4, 5}, {5, 8}, {-3, -1}});
+        return Arrays.asList(new Object[][]{{0, 1}, {1, 1}, {2, 2},
+                {3, 3}, {4, 5}, {5, 8}, {-3, -2}});
     }
     @Test
     public void testCountWays() {

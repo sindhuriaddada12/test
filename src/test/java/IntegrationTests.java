@@ -1,49 +1,78 @@
 import io.restassured.response.ValidatableResponse;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import static io.restassured.RestAssured.given;
+import static junit.framework.TestCase.assertTrue;
 
-public class IntegrationTests {
-    ValidatableResponse response;
+
+public class IntegrationTests extends Base {
+
+    String path = "http://localhost/staircase/stairs/";
 
 
     @Test
-    public void testWithString(){
+    public void testWithString() {
 
-        String stringValue = "test";
+        String stringValue = "string";
+        get(path, stringValue);
 
-     response =   given().
-                when().
-                get("http://localhost/staircase/stairs/N http://localhost/staircase/stairs/"+stringValue)
-                .then().log().all();
-
-     response.statusCode(400);
+        isBadRequest();
     }
 
     @Test
-    public void testWithNegativeValues(){
+    public void testWithNegativeValues() {
 
         int negativeValue = -3;
+        get(path, negativeValue);
+        // Even though this works with given code, In testing point of view I expect this to fail
 
-        response =   given().
-                when().
-                get("http://localhost/staircase/stairs/N http://localhost/staircase/stairs/"+negativeValue)
-                .then().log().all();
-
-        response.statusCode(400);
+        isBadRequest();
     }
 
     @Test
-    public void testWithNull(){
+    public void testWithValueZero() {
 
-        String nullValue = null;
+        get(path, 0);
+        // Even though this works with given code, In testing point of view I expect this to fail
+        isBadRequest();
 
-        response =   given().
-                when().
-                get("http://localhost/staircase/stairs/N http://localhost/staircase/stairs/"+nullValue)
-                .then().log().all();
-
-        response.statusCode(400);
     }
+
+    @Test
+    public void testWithValueOne() {
+
+        get(path, 1);
+        isOK();
+        assertTrue(isContainsString(jsonAsString(getResponse()), "1"));
+    }
+
+    @Test
+    public void testWithValueTwo() {
+
+        get(path, 2);
+        isOK();
+        assertTrue(isContainsString(jsonAsString(getResponse()), "2"));
+    }
+
+    @Test
+    public void testWithValueThree() {
+
+
+        get(path, 3);
+        isOK();
+        assertTrue(isContainsString(jsonAsString(getResponse()), "3"));
+    }
+
+    @Test
+    public void testWithValueFour() {
+
+
+        get(path, 4);
+        isOK();
+        assertTrue(isContainsString(jsonAsString(getResponse()), "4"));
+    }
+
 
 }

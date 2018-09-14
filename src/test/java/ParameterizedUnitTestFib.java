@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import static junit.framework.TestCase.assertEquals;
 @RunWith(Parameterized.class)
-public class Parameterized_StairsTests {
+public class ParameterizedUnitTestFib {
 
 
     @Parameterized.Parameter(0)
@@ -17,15 +17,17 @@ public class Parameterized_StairsTests {
     public static Iterable<Object[]> data() {
 
 // testing with input values 0,1,2,3,4,5,-3
-        return Arrays.asList(new Object[][]{{0, 0}, {1, 1}, {2, 2},
-                {3, 3}, {4, 5}, {5, 8}, {-3, -1}});
-    }
+        return Arrays.asList(new Object[][]{{0, 0}, {1, 1}, {2, 1},
+             {3, 2}, {4, 3}, {5, 5}, {-3, -3}});
+
+       }
     @Test
-    public void testStairs() {
+    public void testCountWays() {
 /* assume making a GET request to http://localhost/staircase/stairs/n with
 input value n (no.of stairs).
 and validating against GET response*/
         Stairs stairs = new Stairs();
-        assertEquals(wExpected, stairs.countWays(sInput));
+        assertEquals(wExpected, stairs.fib(sInput));
     }
+
 }

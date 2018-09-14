@@ -5,7 +5,7 @@ public class TestRunnerUnitTests {
     public static void main(String[] args) {
 // runs Unit and functional tests
         Result result =
-                JUnitCore.runClasses(ParameterizedCountWaysTest.class, ParameterizedFibTest.class);
+                JUnitCore.runClasses(ParameterizedUnitTestCountWays.class, ParameterizedUnitTestFib.class);
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
         }
