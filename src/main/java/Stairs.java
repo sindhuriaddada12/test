@@ -10,6 +10,8 @@ class Stairs
         else {
             return fib(n-1) + fib(n-2);
         }
+
+
     }
 
     // Returns number of ways to reach s'th stair
@@ -23,5 +25,7 @@ class Stairs
     public static void main (String args[])
     {
         System.out.println("Number of ways = "+ countWays(10));
+
     }
+
 }

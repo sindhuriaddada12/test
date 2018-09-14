@@ -8,7 +8,7 @@ public class IntegrationTests {
 
 
     @Test
-    public void testInvalidData(){
+    public void testWithString(){
 
         String stringValue = "test";
 
@@ -18,6 +18,32 @@ public class IntegrationTests {
                 .then().log().all();
 
      response.statusCode(400);
+    }
+
+    @Test
+    public void testWithNegativeValues(){
+
+        int negativeValue = -3;
+
+        response =   given().
+                when().
+                get("http://localhost/staircase/stairs/N http://localhost/staircase/stairs/"+negativeValue)
+                .then().log().all();
+
+        response.statusCode(400);
+    }
+
+    @Test
+    public void testWithNull(){
+
+        String nullValue = null;
+
+        response =   given().
+                when().
+                get("http://localhost/staircase/stairs/N http://localhost/staircase/stairs/"+nullValue)
+                .then().log().all();
+
+        response.statusCode(400);
     }
 
 }
