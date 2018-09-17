@@ -71,7 +71,7 @@ public class IntegrationTests extends Base {
 
         get(path, 4);
         isOK();
-        assertTrue(isContainsString(jsonAsString(getResponse()), "4"));
+        assertTrue(isContainsString(jsonAsString(getResponse()), "5"));
     }
 
 
